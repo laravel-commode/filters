@@ -1,0 +1,20 @@
+{
+    "name": "laravel-commode/filters",
+    "description": "",
+    "authors": [
+        {
+            "name": "Andrey Volynov",
+            "email": "dubpubz@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "LaravelCommode\\Filters": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
