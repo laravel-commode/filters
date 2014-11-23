@@ -13,14 +13,14 @@
             return ['commode.filters', IFilterRegistry::class];
         }
 
-        public function launching() { }
+        protected function launching() { }
 
         public function boot()
         {
             $this->package('laravel-commode/filters');
         }
 
-        public function registering()
+        protected function registering()
         {
             $this->app->bind(IFilterRegistry::class, FilterRegistry::class);
 
