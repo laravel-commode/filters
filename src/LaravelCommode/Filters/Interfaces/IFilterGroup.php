@@ -14,7 +14,7 @@
     {
         public function getPrefix();
 
-        public function registered();
+        public function isRegistered();
 
         public function register(Router $router, Resolver $resolver);
     } 

@@ -9,6 +9,10 @@
 
     use Illuminate\Routing\Router;
 
+    /**
+     * Class FilterRegistry
+     * @package LaravelCommode\Filters\Registry
+     */
     class FilterRegistry extends ResolverAccess implements IFilterRegistry
     {
         /**
@@ -46,10 +50,10 @@
          * @param $offset
          * @return AbstractFilterGroup
          */
-        public function __get($offset)
+/*        public function __get($offset)
         {
             return parent::__get($offset);
-        }
+        }*/
 
         protected function onSet(&$offset, $value)
         {
@@ -58,8 +62,8 @@
              */
             $value = parent::onSet($offset, $value);
 
-            if (!$this->lazyLoading()) {
-                if (!$value->registered()) {
+            if ($this->lazyLoading()) {
+                if (!$value->isRegistered()) {
                     $value->register($this->router, $this->resolver);
                 }
             }
@@ -75,26 +79,26 @@
              * @var AbstractFilterGroup $value
              */
             foreach($this as $key => $value) {
-                if (!$value->registered()) {
+                if (!$value->isRegistered()) {
                     $value->register($this->router, $this->resolver);
                 }
             }
         }
 
-        public function add(IFilterGroup $filterGroup)
+        public function add(IFilterGroup $filterGroup, $forceRegister = true)
         {
             $this[] = $filterGroup;
         }
 
-        public function extract($filterGroup)
+        public function extract($filterGroup, $forceRegister = true)
         {
             $this[] = $filterGroup;
         }
 
-        public function extractArray(array $filterGroups)
+        public function extractArray(array $filterGroups, $forceRegister = true)
         {
             foreach($filterGroups as $filterGroup) {
-                $this[] = $filterGroup;
+                $this->extract($filterGroup, $forceRegister);
             }
         }
 

@@ -12,7 +12,7 @@
 
         abstract public function getPrefix();
 
-        public function registered()
+        public function isRegistered()
         {
             return $this->registered;
         }
@@ -21,7 +21,7 @@
         {
             $reflection = new ReflectionMethodsFilter($this);
 
-            foreach($reflection->filterPrefix($this->getPrefix()) as $method)
+            foreach($methods = $reflection->filterPrefix($this->getPrefix()) as $method)
             {
                 $router->filter($method, $resolver->methodToClosure($this, $method));
             }
