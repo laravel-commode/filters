@@ -4,6 +4,11 @@
 
     class FiltersServiceProvider extends GhostService
     {
+        protected $aliases = [
+            'FilterRegistry' => 'LaravelCommode\Filters\Facade\FilterRegistry'
+        ];
+
+
         const InterfaceName = 'LaravelCommode\Filters\Interfaces\IFilterRegistry';
         const ConcreteName = 'LaravelCommode\Filters\Registry\FilterRegistry';
         const ServiceName = 'commode.filters';
