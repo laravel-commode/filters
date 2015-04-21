@@ -28,6 +28,7 @@ You can install ___laravel-commode/common___ using composer:
 
 To enable package you need to register ``LaravelCommode\Filters\FiltersServiceProvider`` service provider:
 
+```php
     <?php
         // ./yourLaravelApplication/app/config/app.php
         return [
@@ -37,7 +38,7 @@ To enable package you need to register ``LaravelCommode\Filters\FiltersServicePr
                 'LaravelCommode\Filters\FiltersServiceProvider'
             ]
         ];
-
+```
 
 ##<a name="filter_group">Creating a filter group</a>
 
@@ -49,7 +50,8 @@ For example, let's say we need an ACL filter group, that could be checking wheth
 and check if current authorized user has permissions for actions. We will create `ACLFilters` class, that extends 
 ``LaravelCommode\Filters\Groups\AbstractFilterGroup`` and implement ``getPrefix()`` method, that would return 
 _'auth'_ value, since methods' names we're gonna need as filters are prefixes with this string:
-  
+
+```php
     <?php
         namespace Application\Http\Filters;
         
@@ -101,7 +103,8 @@ _'auth'_ value, since methods' names we're gonna need as filters are prefixes wi
                 return 'auth';
             }
         }
-        
+```
+
 ##<a name="filter_registry">Filter registry</a>
 
 Filter registry is a class that helps you to register your filter groups in laravel environment. It can be 
@@ -114,7 +117,11 @@ method or if you want to register multiple filter groups you need to use
 you can pass it's instance into 
 ``FilterRegistry::add(\LaravelCommode\Filters\Interfaces\IFilterGroup $filterGroup)``. 
 
+```php
+
     <?php
         FilterRegistry::extract('Application\Http\Filters\ACLFilters');
         FilterRegistry::extractArray([Application\Http\Filters\ACLFilters::class]); // php 5.5 style
         FilterRegistry::add(new Application\Http\Filters\ACLFilters(app()))
+        
+```
