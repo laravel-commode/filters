@@ -8,6 +8,6 @@
     {
         protected static function getFacadeAccessor()
         {
-            return [FiltersServiceProvider::ServiceName];
+            return FiltersServiceProvider::ServiceName;
         }
     }
